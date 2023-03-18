@@ -137,32 +137,32 @@ def unzip(l):
 
 def input_choice(labels, values):
   for (i, v) in enumerate(labels):
-    print "%d) %s" % (i+1, v)
+    print ("%d) %s" % (i+1, v))
   while True:
     try:
       i = raw_input()
       i = int(i)
       return values[i-1]
     except ValueError:
-      print "Incorrect input: `%s` is not a number. Try again" % i
+      print ("Incorrect input: `%s` is not a number. Try again" % i)
     except IndexError:
-      print "Incorrect input: `%s` is out of range. Try again" % i
+      print ("Incorrect input: `%s` is out of range. Try again" % i)
 
 
 def parse_interactively(path):
   filename = os.path.splitext(os.path.basename(path))[0]
 
-  print "-----"
-  print "Processing `%s`" % path
+  print ("-----")
+  print ("Processing `%s`" % path)
 
   alternatives = name_to_version_alternatives(filename)
   alternatives.sort(key=lambda (n, v): len(v), reverse=True)
 
   if not alternatives:
-    print "Incorrect name format: `%s`. Skipping" % filename
+    print ("Incorrect name format: `%s`. Skipping" % filename)
     return
   if len(alternatives) > 1:
-    print "Choose a correct version for `%s`:" % filename
+    print ("Choose a correct version for `%s`:" % filename)
     labels = [version_parsing(v)[0] for v in unzip(alternatives)[1]]
     (name, version) = input_choice(labels, alternatives)
   else:
@@ -171,10 +171,10 @@ def parse_interactively(path):
   
   alternatives = list(reversed(group_to_name_alternatives(name)))
   if not alternatives:
-    print "Incorrect name format: `%s`. Skipping" % filename
+    print ("Incorrect name format: `%s`. Skipping" % filename)
     return
   if len(alternatives) > 1:
-    print "Choose a correct artifactId for `%s`:" % name
+    print ("Choose a correct artifactId for `%s`:" % name)
     labels = [name_parsing(a)[0] for a in unzip(alternatives)[1]]
     (group, name) = input_choice(labels, alternatives)
   else:
@@ -214,9 +214,9 @@ parsings = (
 
 unparsable_files = [r[0] for r in parsings if r[1] == None]
 if unparsable_files:
-  print "The following files could not be parsed:"
+  print ("The following files could not be parsed:")
   for f in unparsable_files:
-    print "| - " + f
+    print ("| - " + f)
 
 
 parsings = [p for p in parsings if p[1] != None]

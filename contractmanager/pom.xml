@@ -168,14 +168,14 @@
 			<groupId>de.willuhn</groupId>
 			<artifactId>util</artifactId>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/../de_willuhn_util.jar</systemPath>
+			<systemPath>${project.basedir}/../../jameica/lib/de_willuhn_util//de_willuhn_util.jar</systemPath>
 			<version>2.6.4</version>
 		</dependency>
 		<dependency>
 			<groupId>de.willuhn</groupId>
 			<artifactId>datasource</artifactId>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/../de_willuhn_ds.jar</systemPath>
+			<systemPath>${project.basedir}/../../jameica/lib/de_willuhn_ds/de_willuhn_ds.jar</systemPath>
 			<version>2.6.4</version>
 		</dependency>
 		<dependency>
@@ -189,8 +189,8 @@
 			<groupId>org.eclipse</groupId>
 			<artifactId>jface</artifactId>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/../../jameica/lib/swt/org.eclipse.jface_3.10.1.v20140813-1009.jar</systemPath>
-			<version>3.10.1</version>
+			<systemPath>${project.basedir}/../../jameica/lib/swt/org.eclipse.jface-3.28.0.jar</systemPath>
+			<version>3.28.0</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-lang</groupId>
