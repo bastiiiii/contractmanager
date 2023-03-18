@@ -727,6 +727,7 @@ public class ContractImpl extends AbstractDBObject implements Contract {
 		if (getFollowingMinRuntimeCount() <= 0) {
 			return Double.NaN;
 		}
+		double costsOnce = 0;
 		double costsPerDay = 0;
 		double costsPerWeek = 0;
 		double costsPerMonth = 0;
@@ -735,6 +736,9 @@ public class ContractImpl extends AbstractDBObject implements Contract {
 		while (costsIterator.hasNext()) {
 			Costs costEntry = costsIterator.next();
 			switch (costEntry.getPeriod()) {
+			case ONCE:
+				costsOnce += costEntry.getMoney();
+				break;
 			case DAYS:
 				costsPerDay += costEntry.getMoney();
 				break;
@@ -794,6 +798,24 @@ public class ContractImpl extends AbstractDBObject implements Contract {
 		while (costsIterator.hasNext()) {
 			Costs costEntry = costsIterator.next();
 			switch (costEntry.getPeriod()) {
+			case ONCE:
+				switch (getFirstMinRuntimeType()) {
+				case DAYS:// Days
+					costsPerMonth += costEntry.getMoney()/getFirstMinRuntimeCount()*(30.42/7);
+					break;
+				case WEEKS: // Weeks
+					costsPerMonth += costEntry.getMoney()/getFirstMinRuntimeCount()*(30.42/7);
+					break;
+				case MONTHS: // Months
+					costsPerMonth += costEntry.getMoney()/getFirstMinRuntimeCount();
+					break;
+				case YEARS: // Years
+					costsPerMonth += costEntry.getMoney()/getFirstMinRuntimeCount()*12;
+					break;
+				default:
+					break;		
+				}
+				break;
 			case DAYS:
 				costsPerMonth += costEntry.getMoney()*30.42;
 				break;
